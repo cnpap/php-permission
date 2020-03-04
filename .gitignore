@@ -1,0 +1,9 @@
+/vendor
+
+/.vscode
+/.idea
+
+config.php
+composer.lock
+
+/boot/docker/nginx/ssl
