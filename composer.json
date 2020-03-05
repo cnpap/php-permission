@@ -1,6 +1,14 @@
 {
     "name": "justlikesuolong/php-rbac",
     "description": "简单、健壮、快速开发",
+    "authors": [
+        {
+            "name": "杨伟杰",
+            "email": "justlikesuolong@outlook.com",
+            "homepage": "https://gitkitlib.com/justlikesuolong",
+            "role": "auther"
+        }
+    ],
     "require": {
         "justlikesuolong/validator": "^1.6",
         "justlikesuolong/psr15": "^1.1",
