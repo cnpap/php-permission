@@ -8,6 +8,6 @@ define('STATUS', ['Yes' => 1, 'No'  => 2, 'Err' => 3]);
 use Illuminate\Database\Capsule\Manager;
 
 $dbManage = new Manager();
-$dbManage->addConnection(CONF['db']['default']);
-$dbManage->addConnection(CONF['db']['mall'], 'mall');
+$dbManage->addConnection(CONF['db']['admin'], 'admin');
+$dbManage->addConnection(CONF['db']['mall'],  'mall');
 $dbManage->bootEloquent();

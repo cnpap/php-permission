@@ -2,7 +2,7 @@
 
 return [
     'db' => [
-        'default' => [
+        'admin' => [
             'database'  => 'database',
             'username'  => 'root',
             'password'  => 'password',
