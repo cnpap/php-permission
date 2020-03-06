@@ -34,6 +34,7 @@ return [
         's3' => [
             'username' => '',
             'password' => '',
+            'schema'   => '',
             'region'   => '',
             'version'  => 'latest'
         ]
