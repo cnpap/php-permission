@@ -20,7 +20,7 @@ class CheckAdmin implements MiddlewareInterface
 
         $tokenStack = explode(' ', $tokenHeader);
 
-        if (count($tokenStack) !== 2 && explode('@', $tokenStack[1]) !== 2) {
+        if (count($tokenStack) !== 2 && count(explode('@', $tokenStack[1])) !== 2) {
             return new Response(403, [], '登陆凭据非法');
         }
 

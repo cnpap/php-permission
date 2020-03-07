@@ -2,14 +2,13 @@
 
 namespace App\Handle\Auth;
 
+use App\Exception\Base\ExceptionBase;
 use App\Model\Admin\AdminUser;
 use App\ValidateHandle;
 use GuzzleHttp\Psr7\Response;
-use PDO;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use RuntimeException;
 use Suolong\Validator\Validator;
 
 class Login implements RequestHandlerInterface
@@ -36,12 +35,12 @@ class Login implements RequestHandlerInterface
         ]);
 
         if ($adminUser === null) {
-            throw new RuntimeException('登陆失败, 用户名或密码不正确');
+            throw new ExceptionBase('登陆失败, 用户名或密码不正确');
         }
 
         if ($adminUser['status'] !== STATUS['Yes'])
         {
-            throw new RuntimeException('该账户未启用');
+            throw new ExceptionBase('该账户未启用');
         }
 
         $payload = [];

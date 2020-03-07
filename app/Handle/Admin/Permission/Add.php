@@ -17,7 +17,7 @@ class Add implements RequestHandlerInterface
         $post = $request->getParsedBody();
 
         Validator::validate($post, [
-            'menu'   => 'must&&int&&intIn:' . implode(',', [STATUS['YES'], STATUS['NO']]),
+            'menu'   => 'must&&int&&intIn:' . implode(',', [STATUS['Yes'], STATUS['No']]),
             'path'   => 'must&&string&&stringMax:100',
             'name'   => 'must&&string&&safe&&stringBetween:4,40',
             'memo'   => 'must&&string&&stringMax:200',
@@ -32,6 +32,7 @@ class Add implements RequestHandlerInterface
         $adminPermission->code   = $post['code'];
         $adminPermission->name   = $post['name'];
         $adminPermission->memo   = $post['memo'];
+        $adminPermission->menu   = $post['menu'];
         $adminPermission->status = $post['status'];
         $save                    = $adminPermission->save();
 

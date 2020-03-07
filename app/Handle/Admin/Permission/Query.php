@@ -28,8 +28,9 @@ class Query implements RequestHandlerInterface
         $get['name'] = $get['name'] ?? '';
 
         $data = AdminPermission::query()
-        ->where('code', 'like', '%' . $get['code']     . '%')
-        ->where('name', 'like', '%' . $get['name']     . '%')
+        ->where('code',     'like', '%' . $get['code']     . '%')
+        ->where('name',     'like', '%' . $get['name']     . '%')
+        ->whereIn('status', $get['status'])
         ->paginate(
             $get['pre_page'] ?? 10,
             [

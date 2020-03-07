@@ -8,9 +8,9 @@ create table admin_role
     name       varchar(40)  not null unique,
     memo       varchar(200) not null,
     status     smallint     not null,
-    created_at varchar(12),
-    updated_at varchar(12),
-    deleted_at varchar(12)
+    created_at timestamp,
+    updated_at timestamp,
+    deleted_at timestamp
 );
 
 insert into

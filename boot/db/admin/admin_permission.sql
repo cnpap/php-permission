@@ -2,17 +2,17 @@ drop table if exists admin_permission;
 
 create table admin_permission
 (
-    code varchar(32)       not null primary key,
+    code        varchar(32) not null primary key,
     parent_code varchar(32),
-    menu       smallint    not null,
-    path       varchar(80) not null unique,
-    name       varchar(40) not null unique,
-    memo       varchar(200),
-    icon       varchar(200),
-    status     smallint     not null,
-    created_at varchar(12),
-    updated_at varchar(12),
-    deleted_at varchar(12)
+    menu        smallint    not null,
+    path        varchar(80) not null unique,
+    name        varchar(40) not null unique,
+    memo        varchar(200),
+    icon        varchar(200),
+    status      smallint     not null,
+    created_at timestamp,
+    updated_at timestamp,
+    deleted_at timestamp
 );
 
 insert into

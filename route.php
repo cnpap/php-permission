@@ -1,6 +1,7 @@
 <?php
 
 use App\Handle\Auth\Login;
+use App\Handle\Auth\Check;
 use App\Handle\Auth\Password;
 
 use App\Process\CheckAdmin;
@@ -46,6 +47,7 @@ $router->group([
     $router->group([
         'prefix' => 'admin'
     ], function (Router $router) {
+        $router->get('check', Check::class);
         $router->post('password', Password::class);
         $router->group([
             'prefix' => 'user'

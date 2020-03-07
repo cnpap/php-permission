@@ -15,7 +15,9 @@ class Outline implements RequestHandlerInterface
         $outline = AdminPermission::query()
         ->get([
             'code',
-            'name'
+            'name',
+            'menu',
+            'parent_code'
         ]);
 
         return new Response(

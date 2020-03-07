@@ -38,6 +38,7 @@ try {
     exit($content);
 } catch (Exception $e) {
     if (CONF['app']['debug'] === true) {
+        http_response_code(500);
         throw $e;
     }
 

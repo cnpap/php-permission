@@ -22,6 +22,10 @@ class Find implements RequestHandlerInterface
             $_GET['code'],
             [
                 'code',
+                'parent_code',
+                'path',
+                'icon',
+                'menu',
                 'name',
                 'memo',
                 'status',
