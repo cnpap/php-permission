@@ -1,5 +1,6 @@
 <?php
 
+use App\Exception\Base\ExceptionProcess;
 use App\Process\Options;
 use App\Process\ParseBody;
 use App\Process\WithConf;
@@ -14,6 +15,7 @@ require_once __DIR__ . '/../route.php';
 
 $handle = new Handle([
     new WithConf,
+    new ExceptionProcess,
     new RouteNotFound,
     new ValidateFail,
     new Options, 
@@ -35,10 +37,10 @@ try {
     http_response_code($code);
     exit($content);
 } catch (Exception $e) {
-    if (CONF['app']['debug'] == true) {
+    if (CONF['app']['debug'] === true) {
         throw $e;
     }
 
     http_response_code(500);
-    exit($e->getMessage());
+    exit('服务器请求异常');
 }

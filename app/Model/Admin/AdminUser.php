@@ -17,7 +17,11 @@ class AdminUser extends AdminModel
 
     function roles() {
         return $this
-        ->belongsToMany(AdminRole::class)
-        ->using(AdminUserRole::class);
+        ->belongsToMany(
+            AdminRole::class,
+            'admin_user_role',
+            'user_code',
+            'role_code'
+        );
     }
 }

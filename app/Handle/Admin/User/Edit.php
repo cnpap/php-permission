@@ -5,19 +5,20 @@ namespace App\Handle\Admin\User;
 use App\Exception\Base\ExceptionBase;
 use App\Model\Admin\AdminModel;
 use App\Model\Admin\AdminUser;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Suolong\Validator\Validator;
 
-class Add implements RequestHandlerInterface
+class Edit implements RequestHandlerInterface
 {
     function handle(ServerRequestInterface $request): ResponseInterface
     {
         $post = $request->getParsedBody();
 
         Validator::validate($post, [
+            'code'        => 'must&&string&&safe&&stringMax:40',
             'username'    => 'must&&string&&phone',
             'name'        => 'must&&string&&safe&&stringBetween:4,40',
             'memo'        => 'must&&string&&stringMax:200',
@@ -26,21 +27,18 @@ class Add implements RequestHandlerInterface
             'role_code.*' => 'string&&safe&&stringMax:40'
         ]);
 
-        $post['code'] = uniqid(time());
-
         (new AdminModel)->getConnection()->transaction(
             function () use ($post) {
-                $adminUser             = new AdminUser;
-                $adminUser->code       = $post['code'];
-                $adminUser->name       = $post['name'];
-                $adminUser->memo       = $post['memo'];
-                $adminUser->status     = $post['status'];
-                $adminUser->username   = $post['username'];
-                $adminUser->password   = md5($post['password']);
-                $save = $adminUser->save();
+                /** @var AdminUser */
+                $adminUser           = AdminUser::query()->findOrFail($post['code']);
+                $adminUser->username = $post['username'];
+                $adminUser->name     = $post['name'];
+                $adminUser->memo     = $post['memo'];
+                $adminUser->status   = $post['status'];
+                $save                = $adminUser->save();
 
                 if ($save !== true) {
-                    throw new ExceptionBase('添加管理员用户失败');
+                    throw new ExceptionBase('修改管理员用户失败');
                 }
 
                 $sync = $adminUser->roles()->sync($post['role_code']);

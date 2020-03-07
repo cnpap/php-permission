@@ -39,7 +39,7 @@ class Login implements RequestHandlerInterface
             throw new RuntimeException('登陆失败, 用户名或密码不正确');
         }
 
-        if ($adminUser['status'] !== STATUS['YES'])
+        if ($adminUser['status'] !== STATUS['Yes'])
         {
             throw new RuntimeException('该账户未启用');
         }

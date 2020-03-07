@@ -11,4 +11,14 @@ use App\Model\Admin\AdminModel;
 class AdminRole extends AdminModel
 {
     protected $table = 'admin_role';
+
+    function permissions() {
+        return $this
+        ->belongsToMany(
+            AdminPermission::class,
+            'admin_role_permission',
+            'role_code',
+            'permission_code'
+        );
+    }
 }
