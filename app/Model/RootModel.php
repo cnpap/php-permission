@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $code
@@ -15,8 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class RootModel extends Model
 {
-    use SoftDeletes;
-
     protected $guarded = [];
 
     protected $primaryKey = 'code';

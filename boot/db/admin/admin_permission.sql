@@ -3,7 +3,7 @@ drop table if exists admin_permission;
 create table admin_permission
 (
     code        varchar(32) not null primary key,
-    parent_code varchar(32),
+    parent_code varchar(32) references admin_permission(code) ON DELETE CASCADE,
     menu        smallint    not null,
     path        varchar(80) not null unique,
     name        varchar(40) not null unique,
