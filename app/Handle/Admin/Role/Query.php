@@ -30,6 +30,7 @@ class Query implements RequestHandlerInterface
         $data = AdminRole::query()
         ->where('code', 'like', '%' . $get['code']     . '%')
         ->where('name', 'like', '%' . $get['name']     . '%')
+        ->whereIn('status', $get['status'])
         ->paginate(
             $get['pre_page'] ?? 10,
             [

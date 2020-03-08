@@ -57,7 +57,7 @@ class CheckPermission implements MiddlewareInterface
         }
 
         if ($check->rowCount() !== 1) {
-            return new Response(403, [], '缺少访问权限');
+            return new Response(500, [], '缺少访问权限');
         }
 
         return $handle->handle($request);

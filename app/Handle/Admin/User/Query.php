@@ -33,6 +33,7 @@ class Query implements RequestHandlerInterface
         ->where('code',     'like', '%' . $get['code']     . '%')
         ->where('username', 'like', '%' . $get['username'] . '%')
         ->where('name',     'like', '%' . $get['name']     . '%')
+        ->whereIn('status', $get['status'])
         ->paginate(
             $get['per_page'] ?? 10,
             [

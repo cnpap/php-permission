@@ -40,46 +40,51 @@ $router->post('login', Login::class);
 $router->group([
     'processes' => [
         CheckAdmin::class,
-        CheckPermission::class,
         WithValidator::class
     ]
 ], function (Router $router) {
+    $router->get('check', Check::class);
+    $router->post('password', Password::class);
     $router->group([
-        'prefix' => 'admin'
+        'proceesses' => [
+            CheckPermission::class,
+        ]
     ], function (Router $router) {
-        $router->get('check', Check::class);
-        $router->post('password', Password::class);
         $router->group([
-            'prefix' => 'user'
+            'prefix' => 'admin'
         ], function (Router $router) {
-            $router->post('add',    AdminUserAdd::class);
-            $router->delete('del',  AdminUserDel::class);
-            $router->put('edit',    AdminUserEdit::class);
-            $router->get('find',    AdminUserFind::class);
-            $router->get('query',   AdminUserQuery::class);
-            $router->post('status', AdminUserStatus::class);
-        });
-        $router->group([
-            'prefix' => 'role'
-        ], function (Router $router) {
-            $router->post('add',    AdminRoleAdd::class);
-            $router->delete('del',  AdminRoleDel::class);
-            $router->put('edit',    AdminRoleEdit::class);
-            $router->get('find',    AdminRoleFind::class);
-            $router->get('query',   AdminRoleQuery::class);
-            $router->post('status', AdminRoleStatus::class);
-            $router->get('outline', AdminRoleOutline::class);
-        });
-        $router->group([
-            'prefix' => 'permission'
-        ], function (Router $router) {
-            $router->post('add',    AdminPermissionAdd::class);
-            $router->delete('del',  AdminPermissionDel::class);
-            $router->put('edit',    AdminPermissionEdit::class);
-            $router->get('find',    AdminPermissionFind::class);
-            $router->get('query',   AdminPermissionQuery::class);
-            $router->post('status', AdminPermissionStatus::class);
-            $router->get('outline', AdminPermissionOutline::class);
+            $router->group([
+                'prefix' => 'user'
+            ], function (Router $router) {
+                $router->post('add',    AdminUserAdd::class);
+                $router->delete('del',  AdminUserDel::class);
+                $router->put('edit',    AdminUserEdit::class);
+                $router->get('find',    AdminUserFind::class);
+                $router->get('query',   AdminUserQuery::class);
+                $router->post('status', AdminUserStatus::class);
+            });
+            $router->group([
+                'prefix' => 'role'
+            ], function (Router $router) {
+                $router->post('add',    AdminRoleAdd::class);
+                $router->delete('del',  AdminRoleDel::class);
+                $router->put('edit',    AdminRoleEdit::class);
+                $router->get('find',    AdminRoleFind::class);
+                $router->get('query',   AdminRoleQuery::class);
+                $router->post('status', AdminRoleStatus::class);
+                $router->get('outline', AdminRoleOutline::class);
+            });
+            $router->group([
+                'prefix' => 'permission'
+            ], function (Router $router) {
+                $router->post('add',    AdminPermissionAdd::class);
+                $router->delete('del',  AdminPermissionDel::class);
+                $router->put('edit',    AdminPermissionEdit::class);
+                $router->get('find',    AdminPermissionFind::class);
+                $router->get('query',   AdminPermissionQuery::class);
+                $router->post('status', AdminPermissionStatus::class);
+                $router->get('outline', AdminPermissionOutline::class);
+            });
         });
     });
 });
