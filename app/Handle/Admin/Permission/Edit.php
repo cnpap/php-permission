@@ -19,11 +19,11 @@ class Edit implements RequestHandlerInterface
         Validator::validate($post, [
             'parent_code' => 'string&&safe&&stringMax:40',
             'code'        => 'must&&string&&safe&&stringMax:40',
-            'menu'        => 'must&&int&&intIn:' . implode(',', [STATUS['Yes'], STATUS['No']]),
+            'menu'        => 'must&&int&&intIn:' . implode(',', STATUS),
             'path'        => 'must&&string&&stringMax:100',
             'name'        => 'must&&string&&safe&&stringBetween:4,40',
             'memo'        => 'must&&string&&stringMax:200',
-            'status'      => 'must&&int&&intIn:' . implode(',', [STATUS['Yes'], STATUS['No']]),
+            'status'      => 'must&&int&&intIn:' . implode(',', STATUS),
             'icon'        => 'must&&string&&safe&&stringMax:20'
         ]);
 
