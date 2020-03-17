@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 use App\Exception\Base\ExceptionProcess;
 use App\Process\Options;
 use GuzzleHttp\Psr7\ServerRequest;
@@ -23,20 +25,15 @@ $handle = new Handle([
     $router
 ]);
 
-function clearUpException($e)
+function clearUpException(Exception $e)
 {
-    if (CONF['app']['debug'] === true)
-    {
-        http_response_code(500);
-        throw $e;
-    }
-
     http_response_code(500);
-    exit('服务器请求异常');
+    exit($e->getMessage());
 }
 
 function clearUpError($errno, $errstr, $errfile, $errline)
 {
+    http_response_code(500);
     if (CONF['app']['debug'] === true)
     {
         $template = <<<EOF
@@ -45,8 +42,6 @@ function clearUpError($errno, $errstr, $errfile, $errline)
         错误编号: %s
         错误信息: %s
         EOF;
-        
-        http_response_code(500);
         exit(sprintf(
             $template,
             $errfile,
@@ -55,6 +50,7 @@ function clearUpError($errno, $errstr, $errfile, $errline)
             $errstr
         ));
     }
+    exit('服务器请求异常');
 }
 
 set_error_handler('clearUpError');
