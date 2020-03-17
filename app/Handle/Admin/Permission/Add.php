@@ -38,7 +38,8 @@ class Add implements RequestHandlerInterface
         $adminPermission->parent_code = $post['parent_code'] ?? '';
         $save                         = $adminPermission->save();
 
-        if ($save !== true) {
+        if ($save !== true) 
+        {
             throw new ExceptionBase('添加管理员权限失败');
         }
 

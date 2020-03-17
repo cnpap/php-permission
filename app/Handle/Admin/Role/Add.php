@@ -42,7 +42,8 @@ class Add implements RequestHandlerInterface
 
                 $sync = $adminRole->permissions()->sync($post['permission_code']);
 
-                if (count($sync) < 1) {
+                if (count($sync) < 1) 
+                {
                     throw new ExceptionBase('关联管理员权限失败');
                 }
             }

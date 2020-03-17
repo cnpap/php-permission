@@ -16,11 +16,13 @@ class CheckPermission implements MiddlewareInterface
     {
         $user = $request->getAttribute('user');
 
-        if (is_null($user)) {
+        if (is_null($user)) 
+        {
             return new Response(401, [], '请登陆');
         }
 
-        if (isset($user['code']) && $user['code'] === '001_admin') {
+        if (isset($user['code']) && $user['code'] === '001_admin') 
+        {
             return $handle->handle($request);
         }
 
@@ -52,11 +54,13 @@ class CheckPermission implements MiddlewareInterface
         $check->bindParam('user_code', $user['code']);
         $ok = $check->execute();
 
-        if ($ok !== true) {
+        if ($ok !== true) 
+        {
             throw new ExceptionBase('权限判定失败');
         }
 
-        if ($check->rowCount() !== 1) {
+        if ($check->rowCount() !== 1) 
+        {
             return new Response(500, [], '缺少访问权限');
         }
 

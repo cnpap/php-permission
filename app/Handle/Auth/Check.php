@@ -69,7 +69,8 @@ class Check implements RequestHandlerInterface
             $queryMenu->bindParam('menu', $menu);
             $ok = $queryMenu->execute();
 
-            if ($ok !== true) {
+            if ($ok !== true) 
+            {
                 throw new ExceptionBase('获取菜单列表失败');
             }
 

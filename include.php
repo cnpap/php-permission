@@ -16,6 +16,7 @@ $dbManage->setEventDispatcher(new Dispatcher(new Container));
 $dbManage->setAsGlobal();
 $dbManage->bootEloquent();
 
-if (CONF['app']['debug'] === true) {
+if (CONF['app']['debug'] === true) 
+{
     include __DIR__ . '/debug.php';
 }

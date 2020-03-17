@@ -14,26 +14,30 @@ class CheckAdmin implements MiddlewareInterface
     {
         $tokenHeader = $request->getHeaderLine('Authorization');
 
-        if (!$tokenHeader) {
+        if (!$tokenHeader) 
+        {
             return new Response(401, [], '请登陆');
         }
 
         $tokenStack = explode(' ', $tokenHeader);
 
-        if (count($tokenStack) !== 2 && count(explode('@', $tokenStack[1])) !== 2) {
+        if (count($tokenStack) !== 2 && count(explode('@', $tokenStack[1])) !== 2)
+        {
             return new Response(403, [], '登陆凭据非法');
         }
 
         list($tokenPayload, $tokenCheck) = explode('@', $tokenStack[1]);
-        $payload = json_decode(base64_decode($tokenPayload), true);
+        $payload                         = json_decode(base64_decode($tokenPayload), true);
 
-        if (!isset($payload['expired']) || (int) $payload['expired'] < time()) {
+        if (!isset($payload['expired']) || (int) $payload['expired'] < time()) 
+        {
             return new Response(403, [], '登陆凭据已过期');
         }
 
         $check = hash_hmac('sha256', $tokenPayload, CONF['app']['secret']);
 
-        if ($tokenCheck !== $check) {
+        if ($tokenCheck !== $check) 
+        {
             return new Response(403, [], '登陆凭据无法通过验证');
         }
 

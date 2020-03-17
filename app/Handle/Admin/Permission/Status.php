@@ -26,7 +26,8 @@ class Status implements RequestHandlerInterface
         ->whereIn('code', $post['code'])
         ->update(['status' => $post['status']]);
 
-        if ($ok < 1) {
+        if ($ok < 1) 
+        {
             throw new ExceptionBase('修改管理员权限状态失败');
         }
 

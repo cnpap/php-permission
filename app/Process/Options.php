@@ -14,7 +14,8 @@ class Options implements MiddlewareInterface
     {
         header('Access-Control-Allow-Origin: *');
 
-        if ($request->getMethod() === 'OPTIONS') {
+        if ($request->getMethod() === 'OPTIONS') 
+        {
             header('Access-Control-Allow-Headers: *');
             header('Access-Control-Allow-Methods: *');
             return new Response(200, [], 'ok');

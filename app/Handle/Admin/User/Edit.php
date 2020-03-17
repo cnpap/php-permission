@@ -43,7 +43,8 @@ class Edit implements RequestHandlerInterface
 
                 $sync = $adminUser->roles()->sync($post['role_code']);
 
-                if (count($sync) < 1) {
+                if (count($sync) < 1) 
+                {
                     throw new ExceptionBase('关联管理员角色失败');
                 }
             }

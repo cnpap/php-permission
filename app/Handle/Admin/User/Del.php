@@ -25,7 +25,7 @@ class Del implements RequestHandlerInterface
         ->whereIn('code', $post['code'])
         ->delete();
 
-        if ($ok > 1) {
+        if ($ok < 1) {
             throw new ExceptionBase('删除管理员用户失败');
         }
 

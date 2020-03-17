@@ -35,7 +35,8 @@ class Password implements RequestHandlerInterface
         $adminUser->password = md5($post['new_password']);
         $save = $adminUser->save();
 
-        if ($save !== true) {
+        if ($save !== true) 
+        {
             throw new RuntimeException('修改密码失败');
         }
 
