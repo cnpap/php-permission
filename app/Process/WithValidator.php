@@ -13,7 +13,7 @@ class WithValidator implements MiddlewareInterface
 {
     function process(ServerRequestInterface $requset, RequestHandlerInterface $handle) : ResponseInterface
     {
-        Validator::$handle[] = new ValidateHandle;
+        Validator::$handles[] = new ValidateHandle;
 
         return $handle->handle($requset);
     }

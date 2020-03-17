@@ -23,7 +23,7 @@ $handle = new Handle([
     $router
 ]);
 
-function clearUpException(Exception $e)
+function clearUpException($e)
 {
     if (CONF['app']['debug'] === true)
     {
@@ -45,14 +45,15 @@ function clearUpError($errno, $errstr, $errfile, $errline)
         错误编号: %s
         错误信息: %s
         EOF;
-        echo sprintf(
+        
+        http_response_code(500);
+        exit(sprintf(
             $template,
             $errfile,
             $errline,
             $errno,
             $errstr
-        );
-        http_response_code(500);
+        ));
     }
 }
 

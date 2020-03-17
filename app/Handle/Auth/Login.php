@@ -17,7 +17,6 @@ class Login implements RequestHandlerInterface
     {
         $post = $request->getParsedBody();
 
-        Validator::$handle = new ValidateHandle;
         Validator::validate($post, [
             'username' => 'must&&string&&phone',
             'password' => 'must&&string&&stringBetween:4,16'
