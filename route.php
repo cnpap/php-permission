@@ -36,7 +36,7 @@ use App\Handle\Admin\Permission\Outline as AdminPermissionOutline;
 use App\Process\CheckPermission;
 
 $router = new Router;
-$router->post('login', Login::class);
+$router->post('/auth/login', Login::class);
 $router->group(
     [
         'processes' => [
