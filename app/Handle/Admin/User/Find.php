@@ -17,6 +17,7 @@ class Find implements RequestHandlerInterface
             'code' => 'must&&string&&safe&&stringMax:40'
         ]);
 
+        /** @var AdminUser $user */
         $user = AdminUser::query()
         ->findOrFail(
             $_GET['code'],
@@ -30,6 +31,18 @@ class Find implements RequestHandlerInterface
                 'updated_at'
             ]
         );
+
+        $roles = $user
+        ->roles()
+        ->get(['code']);
+
+        $user              = $user->toArray();
+        $user['role_code'] = [];
+
+        foreach ($roles as $role)
+        {
+            $user['role_code'][] = $role->code;
+        }
 
         return new Response(
             200, 

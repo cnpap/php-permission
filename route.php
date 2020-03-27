@@ -32,11 +32,10 @@ use App\Handle\Admin\Permission\Query   as AdminPermissionQuery;
 use App\Handle\Admin\Permission\Status  as AdminPermissionStatus;
 use App\Handle\Admin\Permission\Outline as AdminPermissionOutline;
 
-
 use App\Process\CheckPermission;
 
 $router = new Router;
-$router->post('/auth/login', Login::class);
+$router->post('login', Login::class);
 $router->group(
     [
         'processes' => [

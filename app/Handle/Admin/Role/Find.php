@@ -17,12 +17,11 @@ class Find implements RequestHandlerInterface
             'code' => 'must&&string&&safe&&stringMax:40'
         ]);
 
-        $user = AdminRole::query()
+        $role = AdminRole::query()
         ->findOrFail(
             $_GET['code'],
             [
                 'code',
-                'username',
                 'name',
                 'memo',
                 'status',
@@ -31,10 +30,22 @@ class Find implements RequestHandlerInterface
             ]
         );
 
+        $permissions = $role
+        ->permissions()
+        ->get(['code']);
+
+        $role                    = $role->toArray();
+        $role['permission_code'] = [];
+
+        foreach ($permissions as $permission)
+        {
+            $role['permission_code'][] = $permission->code;
+        }
+
         return new Response(
             200, 
             ['Content-Type' => ['application/json']],
-            json_encode($user)
+            json_encode($role)
         );
     }
 }

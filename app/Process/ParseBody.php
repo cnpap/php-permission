@@ -26,6 +26,12 @@ class ParseBody implements MiddlewareInterface
                     $post = json_decode($contents, true);
                     $request = $request->withParsedBody($post);
                     return;
+                },
+                '@text/plain@' => function ($match) use (&$request, $contents)
+                {
+                    $post = json_decode($contents, true);
+                    $request = $request->withParsedBody($post);
+                    return;
                 }
             ], $request->getHeaderLine('Content-Type'));
         }

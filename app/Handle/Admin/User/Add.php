@@ -36,7 +36,7 @@ class Add implements RequestHandlerInterface
                 $adminUser->memo       = $post['memo'];
                 $adminUser->status     = $post['status'];
                 $adminUser->username   = $post['username'];
-                $adminUser->password   = md5($post['password']);
+                $adminUser->password   = md5($post['username']);
                 $save = $adminUser->save();
 
                 if ($save !== true) {

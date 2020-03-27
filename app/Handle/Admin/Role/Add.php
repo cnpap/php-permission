@@ -21,7 +21,7 @@ class Add implements RequestHandlerInterface
             'name'              => 'must&&string&&safe&&stringBetween:4,40',
             'memo'              => 'must&&string&&stringMax:200',
             'status'            => 'must&&int&&intIn:' . implode(',', STATUS),
-            'permission_code'   => 'must&&array&&arrayMax:40',
+            'permission_code'   => 'array&&arrayMax:40',
             'permission_code.*' => 'string&&safe&&stringMax:40'
         ]);
 

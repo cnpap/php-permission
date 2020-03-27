@@ -19,11 +19,10 @@ class Edit implements RequestHandlerInterface
 
         Validator::validate($post, [
             'code'              => 'must&&string&&safe&&stringMax:40',
-            'username'          => 'must&&string&&phone',
             'name'              => 'must&&string&&safe&&stringBetween:4,40',
             'memo'              => 'must&&string&&stringMax:200',
             'status'            => 'must&&int&&intIn:' . implode(',', STATUS),
-            'permission_code'   => 'must&&array&&arrayMax:40',
+            'permission_code'   => 'array&&arrayMax:40',
             'permission_code.*' => 'string&&safe&&stringMax:40'
         ]);
 
@@ -31,7 +30,6 @@ class Edit implements RequestHandlerInterface
             function () use ($post) {
                 /** @var AdminRole */
                 $adminRole           = AdminRole::query()->findOrFail($post['code']);
-                $adminRole->username = $post['username'];
                 $adminRole->name     = $post['name'];
                 $adminRole->memo     = $post['memo'];
                 $adminRole->status   = $post['status'];
