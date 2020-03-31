@@ -23,13 +23,13 @@ class Add implements RequestHandlerInterface
             'name'        => 'must&&string&&safe&&stringBetween:4,40',
             'memo'        => 'must&&string&&stringMax:200',
             'status'      => 'must&&int&&intIn:' . implode(',', STATUS),
-            'icon'        => 'must&&string&&safe&&stringMax:20'
+            // 'icon'        => 'must&&string&&safe&&stringMax:20'
         ]);
 
         $post['code']                 = uniqid(time());
         $adminPermission              = new AdminPermission;
         $adminPermission->path        = $post['path'];
-        $adminPermission->icon        = $post['icon'];
+        // $adminPermission->icon        = $post['icon'];
         $adminPermission->code        = $post['code'];
         $adminPermission->name        = $post['name'];
         $adminPermission->memo        = $post['memo'];

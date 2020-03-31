@@ -24,13 +24,13 @@ class Edit implements RequestHandlerInterface
             'name'        => 'must&&string&&safe&&stringBetween:4,40',
             'memo'        => 'must&&string&&stringMax:200',
             'status'      => 'must&&int&&intIn:' . implode(',', STATUS),
-            'icon'        => 'must&&string&&safe&&stringMax:20'
+            // 'icon'        => 'must&&string&&safe&&stringMax:20'
         ]);
 
         /** @var AdminPermission */
         $adminPermission              = AdminPermission::query()->findOrFail($post['code']);
         $adminPermission->path        = $post['path'];
-        $adminPermission->icon        = $post['icon'];
+        // $adminPermission->icon        = $post['icon'];
         $adminPermission->code        = $post['code'];
         $adminPermission->name        = $post['name'];
         $adminPermission->memo        = $post['memo'];

@@ -37,7 +37,7 @@ class Query implements RequestHandlerInterface
                 'code',
                 'parent_code',
                 'path',
-                'icon',
+                // 'icon',
                 'menu',
                 'name',
                 'memo',
